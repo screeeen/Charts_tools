@@ -1,0 +1,88 @@
+import { data } from "./data";
+
+const bronzeMedals = [
+  { team: 'JOR', medal: 'Bronze', total: 24 },
+  { team: 'GBR', medal: 'Bronze', total: 10 },
+  { team: 'USA', medal: 'Bronze', total: 4 },
+];
+
+// Resultados parciales / temporales
+const countryResults = {};
+
+// Calculamos totales
+[...bronzeMedals].map((result) => {
+  console.log('result', result);
+
+  countryResults[result.team] = result.total;
+
+  console.log('countryResults', countryResults);
+});
+
+// Pasamos los resultados al formato array indicado
+const totals = Object.keys(countryResults).map((team) => ({
+  team: team,
+  totalMedals: countryResults[team],
+}));
+
+// Mostramos por consola
+console.log('Resultado: ', totals);
+
+
+
+
+I have the following data
+
+
+const days = [
+  {day:"1", sweets:[
+    {name: "name1",count: 200},
+    {name: "name2",count: 20},
+    {name: "name3",count: 10},
+  ]},
+  {day:"3", sweets:[
+    {name: "name1",count: 3},
+  ]},
+  {day:"4", sweets:[
+    {name: "name1",count: 2},
+    {name: "name3",count: 100},
+  ]},
+  {day:"10", sweets:[
+    {name: "name1",count: 2},
+  ]},
+  {day:"12", sweets:[
+    {name: "name1",count: 3},
+  ]},
+  {day:"13", sweets:[
+    {name: "name1",count: 5},
+  ]},
+  {day:"1", sweets:[
+    {name: "name1",count: 10},
+  ]},
+]
+
+
+const flatArray =[
+  {sweetId: 1, sweetName: 'lollypop', count: 200, day: 1},
+  {sweetId: 2, sweetName: 'candyman', count: 10, day: 1},
+  {sweetId: 3, sweetName: 'twisterio', count: 3, day: 1},
+  {sweetId: 1, sweetName: 'lollypop', count: 1, day: 3},
+  {sweetId: 1, sweetName: 'lollypop', count: 4, day: 4},
+  {sweetId: 4, sweetName: 'spicybar', count: 20, day: 4},
+  {sweetId: 1, sweetName: 'lollypop', count: 2, day: 5}
+];
+
+
+const ER = [
+  {
+    sweetId: 1,
+    sweetName: 'lollypop',
+    day:1,
+    count: 200,
+  },
+  {
+    sweetId: 3,
+    sweetName: 'candyman',
+    day:1,
+    count: 10,
+  },
+],
