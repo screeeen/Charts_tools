@@ -5,36 +5,35 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export const SelectableYears = ({ data, onValueChange }) => {
-  const [currentYear, setCurrentYear] = useState(data);
-  const years = ['2021', '2022'];
+export const SelectableTool = ({ data, onValueChange }) => {
+  const [currentTool, setCurrentTool] = useState(data);
+  const tools = ['All Tools', 'xxxxx', 'yyyyy', 'zzzzz'];
 
   const handleChange = (event) => {
-    setCurrentYear(event.target.value);
-
-    // const year = data.find((year) => year.year === event.target.value);
-    onValueChange('year', event.target.value);
+    setCurrentTool(event.target.value);
+    onValueChange('tool', event.target.value);
   };
 
-  const getYears = () =>
-    years.map((year) => (
-      <MenuItem key={year} value={year}>
-        {year}
+  const getTools = () => {
+    return tools.map((tool) => (
+      <MenuItem key={tool} value={tool}>
+        {tool}
       </MenuItem>
     ));
+  };
 
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Year</InputLabel>
+        <InputLabel id="demo-simple-select-label">Tool</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={currentYear}
-          label="Year"
+          value={currentTool}
+          label="Tool"
           onChange={handleChange}
         >
-          {getYears()}
+          {getTools()}
         </Select>
       </FormControl>
     </Box>

@@ -6,21 +6,33 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export const SelectableMonths = ({ data, onValueChange }) => {
-  const [currentMonth, setCurrentMonth] = useState('');
+  const [currentMonth, setCurrentMonth] = useState(data);
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   const handleChange = (event) => {
     setCurrentMonth(event.target.value);
 
-    const month = data.find((month) => month.name === event.target.value);
-    onValueChange('month', month);
+    // const month = data.find((month) => month.name === event.target.value);
+    onValueChange('month', event.target.value);
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   const getMonths = () => {
-    if (!data) return;
-    return data.map((month) => (
-      <MenuItem key={month.name} value={month.name}>
-        {month.name}
+    return months.map((month) => (
+      <MenuItem key={month} value={month}>
+        {month}
       </MenuItem>
     ));
   };
