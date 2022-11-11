@@ -18,7 +18,7 @@ import Select from '@mui/material/Select';
 import { data, year, month, monthCopy } from './data';
 import { SelectableYears } from './SelectableYears';
 import { SelectableMonths } from './SelectableMonths';
-import { SelectableDays } from './SelectableDays';
+import { SelectableDays } from './Attic/SelectableDays';
 import { getStepUtilityClass } from '@mui/material';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

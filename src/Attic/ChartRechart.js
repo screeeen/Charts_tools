@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { CustomDateRangePicker } from './CustomDateRangePicker';
+import { CustomDateRangePicker } from '../CustomDateRangePicker';
 import moment from 'moment';
 import { isInclusivelyBeforeDay } from 'react-dates';
-import { data } from './data';
+import { data } from '../data';
 
 const getDateEntry = (datePicked, rangeDatePicked) => rangeDatePicked || datePicked || null;
 

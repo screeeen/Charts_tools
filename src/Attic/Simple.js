@@ -35,10 +35,10 @@ export const style = {
   flexDirection: 'column',
 };
 
-import { CustomDateRangePicker } from './CustomDateRangePicker';
+import { CustomDateRangePicker } from '../CustomDateRangePicker';
 import moment from 'moment';
 import { isInclusivelyBeforeDay } from 'react-dates';
-import { data } from './data';
+import { data } from '../data';
 
 const getDateEntry = (datePicked, rangeDatePicked) => rangeDatePicked || datePicked || null;
 

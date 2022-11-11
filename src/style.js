@@ -4,6 +4,8 @@ export const style = {
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
+  height: '50%',
+  width: '50%',
 };
 
 export const buttonRack = {
