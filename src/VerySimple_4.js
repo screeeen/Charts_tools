@@ -101,85 +101,92 @@ export const VerySimple_4 = () => {
   // console.log('data', data);
   // console.log('filters', filters);
 
-  const getRawDataset = () => {
-    console.log('*** currentMonthData', currentMonthData);
-    const currentYearData = Object.values(data).find((year) => year.year === filters.year);
-    const currentMonthData = currentYearData.months.find((m) => m.name === filters.month);
+  // const getRawDataset = () => {
+  //   console.log('*** currentMonthData', currentMonthData);
+  //   const currentYearData = Object.values(data).find((year) => year.year === filters.year);
+  //   const currentMonthData = currentYearData.months.find((m) => m.name === filters.month);
 
-    setCurrentData((state) => ({
-      ...state,
-      currentYearData,
-      currentMonthData,
-    }));
+  //   setCurrentData((state) => ({
+  //     ...state,
+  //     currentYearData,
+  //     currentMonthData,
+  //   }));
 
-    // TODO: NO DATA
-    console.log('*** currentMonthData', currentMonthData);
-    // TODO: NO DATA
-    if (!currentMonthData) return;
+  //   // TODO: NO DATA
+  //   // console.log('*** currentMonthData', currentMonthData);
+  //   // TODO: NO DATA
+  //   if (!currentMonthData) return;
 
-    const uses = Object.keys(currentMonthData.useByDay).map((e) => ({
-      day: Object.keys(currentMonthData.useByDay[e])[0],
-      tools: Object.values(currentMonthData.useByDay[e])[0],
-    }));
+  //   const uses = Object.keys(currentMonthData.useByDay).map((e) => ({
+  //     day: Object.keys(currentMonthData.useByDay[e])[0],
+  //     tools: Object.values(currentMonthData.useByDay[e])[0],
+  //   }));
 
-    return uses;
-  };
+  //   return uses;
+  // };
+
+  // useEffect(() => {
+  //   const previa = getRawDataset();
+
+  //   console.log('previa', previa);
+
+  //   // TODO: NO DATA
+  //   if (!previa) return;
+
+  //   // debugger;
+  //   const allTools = Object.keys(previa).map((e) =>
+  //     previa[e].tools.map((t) => ({ ...t, day: parseInt(previa[e].day) }))
+  //   );
+
+  //   const flatArray = allTools.flat();
+  //   const toolsContainer = {};
+
+  //   labels.forEach((num) => {
+  //     Object.values(flatArray).forEach((obj, i) => {
+  //       if (num === obj.day) {
+  //         // si ya esta dentro de la lista, suma
+  //         if (Object.keys(toolsContainer).find((t) => obj.advancedToolName === t)) {
+  //           toolsContainer[obj.advancedToolName].data.push(obj.count);
+  //           // si no lo crea
+  //         } else {
+  //           toolsContainer[obj.advancedToolName] = {
+  //             label: obj.day === 1 ? new Array(1).fill(0) : new Array(),
+  //             data: obj.day === 1 ? new Array(1).fill(0) : new Array(),
+  //             borderColor: colorsByTool[obj.advancedToolName],
+  //             backgroundColor: colorsByTool[obj.advancedToolName],
+  //             tension: 0.2,
+  //           };
+  //           toolsContainer[obj.advancedToolName].label.push(obj.advancedToolName);
+  //           toolsContainer[obj.advancedToolName].data.push(obj.count);
+  //         }
+
+  //         if (!Object.keys(toolsContainer).length === 0 || toolsContainer[obj.advancedToolName] !== undefined) {
+  //           if (toolsContainer[obj.advancedToolName].data.length < obj.day) {
+  //             const currentLength = obj.day - toolsContainer[obj.advancedToolName].data.length;
+  //             toolsContainer[obj.advancedToolName].data.push(...Array(currentLength).fill(0));
+  //           }
+  //         }
+  //       }
+  //     });
+  //   });
+
+  //   //borrar con un método
+  //   for (const [key, value] of Object.entries(toolsContainer)) {
+  //     if (filters.tool !== 'All Tools') {
+  //       if (key !== filters.tool) {
+  //         delete toolsContainer[key];
+  //       }
+  //     }
+  //   }
+
+  //   console.log('datos toolsConatiner', toolsContainer);
+
+  //   setTools(toolsContainer);
+  // }, [filters.year, filters.month, filters.tool]);
 
   useEffect(() => {
-    const previa = getRawDataset();
-
-    console.log('previa', previa);
-
-    // TODO: NO DATA
-    if (!previa) return;
-
-    const allTools = Object.keys(previa).map((e) =>
-      previa[e].tools.map((t) => ({ ...t, day: parseInt(previa[e].day) }))
-    );
-
-    const flatArray = allTools.flat();
-    const toolsContainer = {};
-
-    labels.forEach((num) => {
-      Object.values(flatArray).forEach((obj, i) => {
-        if (num === obj.day) {
-          // si ya esta dentro de la lista, suma
-          if (Object.keys(toolsContainer).find((t) => obj.advancedToolName === t)) {
-            toolsContainer[obj.advancedToolName].data.push(obj.count);
-            // si no lo crea
-          } else {
-            toolsContainer[obj.advancedToolName] = {
-              label: obj.day === 1 ? new Array(1).fill(0) : new Array(),
-              data: obj.day === 1 ? new Array(1).fill(0) : new Array(),
-              borderColor: colorsByTool[obj.advancedToolName],
-              backgroundColor: colorsByTool[obj.advancedToolName],
-              tension: 0.2,
-            };
-            toolsContainer[obj.advancedToolName].label.push(obj.advancedToolName);
-            toolsContainer[obj.advancedToolName].data.push(obj.count);
-          }
-
-          if (!Object.keys(toolsContainer).length === 0 || toolsContainer[obj.advancedToolName] !== undefined) {
-            if (toolsContainer[obj.advancedToolName].data.length < obj.day) {
-              const currentLength = obj.day - toolsContainer[obj.advancedToolName].data.length;
-              toolsContainer[obj.advancedToolName].data.push(...Array(currentLength).fill(0));
-            }
-          }
-        }
-      });
-    });
-
-    //borrar con un método
-    for (const [key, value] of Object.entries(toolsContainer)) {
-      if (filters.tool !== 'All Tools') {
-        if (key !== filters.tool) {
-          delete toolsContainer[key];
-        }
-      }
-    }
-
-    setTools(toolsContainer);
-  }, [filters.year, filters.month, filters.tool]);
+    extractDates();
+  }, [filters.dateFrom, filters.dateTo, filters.tool]);
 
   const datos = {
     labels,
@@ -189,26 +196,22 @@ export const VerySimple_4 = () => {
   const extractDates = () => {
     if (filters.dateFrom && filters.dateTo) {
       const range = getRange(filters.dateFrom, filters.dateTo, 'months');
-      range.map((m) => console.log(m.format('YYYY MMMM')));
-      const rangeYears = [...new Set(range.map((m) => m.format('YYYY')))];
-      console.log('rangeYears', rangeYears);
-      const rangeFormatted = range.map((m) => m.format('YYYY MMMM'));
-      console.log('rangeFormatted', rangeFormatted);
 
-      // incluye el año
+      const rangeYears = [...new Set(range.map((m) => m.format('YYYY')))];
+      // console.log('rangeYears', rangeYears);
+      const rangeMonths = range.map((m) => m.format('MMMM'));
+      // console.log('rangeMonths', rangeMonths);
+
+      console.log('data', data);
 
       const years = Object.values(data).filter((year) => rangeYears.includes(year.year));
-      console.log('years', years);
+      console.log('years from data', years);
 
-      // const months = years.map((year) => Object.values(month).filter((month) => month));
-      // console.log('months', months);
+      const months = Object.values(years).map((month) => month.months.filter((m) => rangeMonths.includes(m.name)));
+      console.log('months from data', months);
 
-      // const currentYearData_from = Object.values(data).filter((year) => year.year === YY_from);
-      // currentYearData_from[0].months.map((month) => console.log('month', month));
-      // const currentMonthData_from = currentYearData_from[0].months.find((month) => month.name === MMMM_from);
-      // console.log('currentMonthData', currentMonthData_from);
-      // // const currentDayData_from = currentYearData_from.months.filter((day) => day.name === D_from);
-      // // console.log('currentMonthData', currentDayData_from);
+      const days = months.map((m) => Object.values(m));
+      console.log('days from data', days);
     }
   };
 
@@ -227,8 +230,6 @@ export const VerySimple_4 = () => {
     }
     return range;
   }
-
-  extractDates();
 
   return (
     <div style={style}>
@@ -255,8 +256,6 @@ export const VerySimple_4 = () => {
         isOutsideRange={(day) => !isInclusivelyBeforeDay(day, moment())}
       />
       <div style={buttonRack}>
-        <SelectableYears data={filters.year} onValueChange={onValueChange} />
-        <SelectableMonths data={filters.month} onValueChange={onValueChange} />
         <SelectableTool data={filters.tool} onValueChange={onValueChange} />
       </div>
       <Line datasetIdKey="id" data={datos} />
